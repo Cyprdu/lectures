@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectures AELF du Jour</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        #lectures {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: #333;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e6e6e6;
+            border-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div id="lectures"></div>
+
+    <script>
+        function getAelfUrl() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = ("0" + (today.getMonth() + 1)).slice(-2);
+            const day = ("0" + today.getDate()).slice(-2);
+            return `https://www.aelf.org/${year}-${month}-${day}/romain/lectures`;
+        }
+
+        function displayLectures() {
+            const url = getAelfUrl();
+            const lecturesDiv = document.getElementById('lectures');
+            lecturesDiv.innerHTML = `<a href="${url}" target="_blank" class="btn">Offices du Jour</a>`;
+        }
+
+        // Appeler la fonction pour afficher le lien lorsque la page se charge
+        displayLectures();
+    </script>
+</body>
+</html>
