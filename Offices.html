@@ -56,7 +56,7 @@
             lecturesDiv.innerHTML = offices.map(office => {
                 const url = getAelfUrl(office);
                 const officeName = office.charAt(0).toUpperCase() + office.slice(1);
-                return `<a href="${url}" target="_blank" class="btn">${officeName}</a>`;
+                return `<a href="${url}" class="btn">${officeName}</a>`;
             }).join('');
         }
 
