@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lectures AELF du Jour</title>
+    <title>Offices AELF du Jour</title>
     <style>
         body {
             display: flex;
@@ -22,6 +22,7 @@
         .btn {
             display: inline-block;
             padding: 12px 24px;
+            margin: 10px;
             font-size: 16px;
             color: #333;
             background-color: #fff;
@@ -41,21 +42,25 @@
     <div id="lectures"></div>
 
     <script>
-        function getAelfUrl() {
+        function getAelfUrl(office) {
             const today = new Date();
             const year = today.getFullYear();
             const month = ("0" + (today.getMonth() + 1)).slice(-2);
             const day = ("0" + today.getDate()).slice(-2);
-            return `https://www.aelf.org/${year}-${month}-${day}/romain/lectures`;
+            return `https://www.aelf.org/${year}-${month}-${day}/romain/${office}`;
         }
 
         function displayLectures() {
-            const url = getAelfUrl();
+            const offices = ['laudes', 'tierce', 'sexte', 'none', 'vepres', 'complies'];
             const lecturesDiv = document.getElementById('lectures');
-            lecturesDiv.innerHTML = `<a href="${url}" target="_blank" class="btn">Offices du Jour</a>`;
+            lecturesDiv.innerHTML = offices.map(office => {
+                const url = getAelfUrl(office);
+                const officeName = office.charAt(0).toUpperCase() + office.slice(1);
+                return `<a href="${url}" target="_blank" class="btn">${officeName}</a>`;
+            }).join('');
         }
 
-        // Appeler la fonction pour afficher le lien lorsque la page se charge
+        // Appeler la fonction pour afficher les liens lorsque la page se charge
         displayLectures();
     </script>
 </body>
